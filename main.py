@@ -71,7 +71,7 @@ def check_websites():
     websites = get_websites_db()
     for website in websites:
         if isDown(website[2]):
-            bot.send_message(website[1], f"*DOWN ALERT⚠️⚠️: * {website[2]} is down !")
+            bot.send_message(website[1], f"*DOWN ALERT⚠️⚠️: * {website[2]} is down !", parse_mode="Markdown")
 
 def set_interval(func, sec):
     def func_wrapper():
@@ -88,7 +88,7 @@ if __name__ == "__main__":
 
     @bot.message_handler(commands=['start'])
     def send_welcome(message):
-        bot.reply_to(message, START_MESSAGE)
+        bot.send_message(message.from_user.id, START_MESSAGE, parse_mode="Markdown")
 
     @bot.message_handler(commands=['add'])
     def action_add(message):
