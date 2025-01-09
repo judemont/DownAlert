@@ -71,7 +71,7 @@ def check_websites():
     websites = get_websites_db()
     for website in websites:
         if isDown(website[2]):
-            bot.send_message(website[1], f"*DOWN ALERT⚠️⚠️: * {website[2]} is down !", parse_mode="Markdown")
+            bot.send_message(website[1], f"*DOWN ALERT: * {website[2]} is down !", parse_mode="Markdown")
 
 def set_interval(func, sec):
     def func_wrapper():
