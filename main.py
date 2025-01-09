@@ -116,13 +116,20 @@ if __name__ == "__main__":
     def list_websites(message):
         user_id = message.from_user.id
         websites = get_websites_user_db(user_id)
+        if len(websites) == 0:
+            bot.reply_to(message, "No website in the watchlist.")
+            return
         websites_str = "\n".join([f"{website[0]}. {website[2]}" + (" ✅" if not isDown(website[2]) else " 📛") for website in websites])
         bot.reply_to(message, websites_str)
 
 
     @bot.message_handler(commands=['remove'])
     def action_remove(message):
-        website_id = int(message.text.split(' ')[1])
+        args = message.text.split(' ')
+        if len(args) != 2:
+            bot.reply_to(message, "Invalid command. (e.g '/remove 1')")
+            return
+        website_id = int(args[1])
         user_id = message.from_user.id
         websites = get_websites_user_db(user_id)
         for i in websites:
