@@ -13,7 +13,7 @@ Send /add <url> to add a website to the watchlist.
 Send /list to list all websites in the watchlist.
 Send /remove <website_id> to remove a website from the watchlist.
 
-This bot is open-source. You can find the source code [here](https://github.com/judemont/DownAlert).
+This bot is open-source. You can find the source code here : https://github.com/judemont/DownAlert.
 You can contact me at @judemont.
 """
 ADDED_MESSAGE = "Website added to the watchlist.\nYou will be notified if the website is down."
@@ -90,7 +90,7 @@ if __name__ == "__main__":
 
     @bot.message_handler(commands=['start'])
     def send_welcome(message):
-        bot.send_message(message.chat.id, START_MESSAGE, parse_mode="Markdown")
+        bot.send_message(message.chat.id, START_MESSAGE)
 
     @bot.message_handler(commands=['add'])
     def action_add(message):
