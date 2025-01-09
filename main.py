@@ -15,6 +15,7 @@ Send /remove <website_id> to remove a website from the watchlist.
 
 This bot is open-source. You can find the source code here : https://github.com/judemont/DownAlert.
 You can contact me at @judemont.
+My website : https://futureofthe.tech .
 """
 ADDED_MESSAGE = "Website added to the watchlist.\nYou will be notified if the website is down."
 
