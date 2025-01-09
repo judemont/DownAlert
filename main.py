@@ -7,10 +7,12 @@ import threading
 
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
 START_MESSAGE = """
-Hi, I'm a bot that checks every 5 minutes if your websites are down and then alerts you.\n
-Send /add <url> to add a website to the watchlist.\n
-Send /list to list all websites in the watchlist.\n
-Send /remove <website_id> to remove a website from the watchlist.\n
+Hi, I'm a bot that checks every 5 minutes if your websites are down and then alerts you.
+
+Send /add <url> to add a website to the watchlist.
+Send /list to list all websites in the watchlist.
+Send /remove <website_id> to remove a website from the watchlist.
+
 This bot is open-source. You can find the source code [here](https://github.com/judemont/DownAlert).
 You can contact me at @judemont.
 """
@@ -71,7 +73,7 @@ def check_websites():
     websites = get_websites_db()
     for website in websites:
         if isDown(website[2]):
-            bot.send_message(website[1], f"*DOWN ALERT: * {website[2]} is down !", parse_mode="Markdown")
+            bot.send_message(website[1], f"*DOWN ALERT⚠️⚠️: * {website[2]} is down !", parse_mode="Markdown")
 
 def set_interval(func, sec):
     def func_wrapper():
