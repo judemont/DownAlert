@@ -88,7 +88,7 @@ if __name__ == "__main__":
 
     @bot.message_handler(commands=['start'])
     def send_welcome(message):
-        bot.send_message(message.from_user.id, START_MESSAGE, parse_mode="Markdown")
+        bot.send_message(message.chat.id, START_MESSAGE, parse_mode="Markdown")
 
     @bot.message_handler(commands=['add'])
     def action_add(message):
