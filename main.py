@@ -94,7 +94,11 @@ if __name__ == "__main__":
 
     @bot.message_handler(commands=['add'])
     def action_add(message):
-        url = message.text.split(' ')[1]
+        args = message.text.split(' ')
+        if len(args) != 2:
+            bot.reply_to(message, "Invalid command. (e.g '/add https://google.com')")
+            return
+        url = args[1]
         user_id = message.from_user.id
         if not validators.url(url):
             bot.reply_to(message, "Invalid URL. (e.g '/add https://google.com')")
