@@ -158,7 +158,10 @@ if __name__ == "__main__":
     @bot.message_handler(commands=['screens'])
     def action_screens(message):
         websites = get_websites_db()
-        os.mkdir("tempimages")
+        try:
+            os.mkdir("tempimages")
+        except FileExistsError:
+            pass
 
         for website in websites:
             imgkit.from_url(website[2], f"tempimages/{website[0]}.jpg")
