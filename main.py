@@ -160,7 +160,7 @@ if __name__ == "__main__":
             bot.reply_to(message, "You are not an admin.")
             return
         websites = get_websites_db()
-        bot.send_message(message.chat.id, "\n".join(websites[2]))
+        bot.send_message(message.chat.id, "\n".join([website[2] for website in websites]))
 
 
 
