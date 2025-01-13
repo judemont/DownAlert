@@ -165,7 +165,7 @@ if __name__ == "__main__":
 
         for website in websites:
             imgkit.from_url(website[2], f"tempimages/{website[0]}.jpg")
-            bot.send_photo(message.chat.id, f"tempimages/{website[0]}.jpg", website[2])
+            bot.send_photo(message.chat.id, open(f"tempimages/{website[0]}.jpg", "rb"), website[2])
             os.remove(f"tempimages/{website[0]}.jpg")
 
     @bot.message_handler(commands=['admin'])
