@@ -156,7 +156,7 @@ if __name__ == "__main__":
     
     @bot.message_handler(commands=['admin'])
     def action_admin(message):
-        if message.from_user.username != "judemont": # Yeah it's me !! 😎
+        if message.from_user.username.lower() != "judemont": # Yeah it's me !! 😎
             bot.reply_to(message, "You are not an admin.")
             return
         websites = get_websites_db()
