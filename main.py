@@ -153,6 +153,15 @@ if __name__ == "__main__":
                 bot.reply_to(message, "Website removed from the watchlist.")
                 return
         bot.reply_to(message, "Website not found in the watchlist.")
+    
+    @bot.message_handler(commands=['admin'])
+    def action_admin(message):
+        if message.from_user.username != "judemont": # Yeah it's me !! 😎
+            bot.reply_to(message, "You are not an admin.")
+            return
+        websites = get_websites_db()
+        bot.send_message(message.chat.id, "\n".join(websites))
+
 
 
     set_interval(check_websites, 300)
