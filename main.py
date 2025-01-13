@@ -13,6 +13,7 @@ Hi, I'm a bot that checks every 5 minutes if your websites are down and then ale
 Send /add <url> to add a website to the watchlist.
 Send /list to list all websites in the watchlist.
 Send /remove <website_id> to remove a website from the watchlist.
+Send /screens to get screenshots of all websites in the watchlist.
 
 This bot is open-source. You can find the source code here : https://github.com/judemont/DownAlert.
 You can contact me at @judemont.
@@ -157,7 +158,7 @@ if __name__ == "__main__":
     
     @bot.message_handler(commands=['screens'])
     def action_screens(message):
-        websites = get_websites_db()
+        websites = get_websites_user_db(message.from_user.id)
         try:
             os.mkdir("tempimages")
         except FileExistsError:
