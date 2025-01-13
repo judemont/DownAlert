@@ -124,9 +124,19 @@ if __name__ == "__main__":
         if len(websites) == 0:
             bot.reply_to(message, "No website in the watchlist.")
             return
-        websites_str = "\n".join([f"{website[0]}. {website[2]}" + (" ✅" if not isDown(website[2]) else " 📛") for website in websites])
-        bot.reply_to(message, websites_str)
+        websites_str = []
+        for website in websites:
+            status = "⏳"
+            websites_str.append(f"{website[0]}. {website[2]} {status}")
 
+        botMessage: telebot.Message = bot.reply_to(message, "\n".join(websites_str))
+
+        websites_str = []
+        for website in websites:
+            status = "✅" if not isDown(website[2]) else "📛"
+            websites_str.append(f"{website[0]}. {website[2]} {status}")
+
+        bot.edit_message_text("\n".join(websites_str), message.chat.id, botMessage.message_id)
 
     @bot.message_handler(commands=['remove'])
     def action_remove(message):
