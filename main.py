@@ -4,6 +4,7 @@ import os
 import sqlite3
 import validators
 import threading
+import imgkit
 
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
 START_MESSAGE = """
@@ -154,9 +155,19 @@ if __name__ == "__main__":
                 return
         bot.reply_to(message, "Website not found in the watchlist.")
     
+    @bot.message_handler(commands=['screens'])
+    def action_screens(message):
+        websites = get_websites_db()
+        os.mkdir("tempimages")
+
+        for website in websites:
+            imgkit.from_url(website[2], f"tempimages/{website[0]}.jpg")
+            bot.send_photo(message.chat.id, f"tempimages/{website[0]}.jpg", website[2])
+            os.remove(f"tempimages/{website[0]}.jpg")
+
     @bot.message_handler(commands=['admin'])
     def action_admin(message):
-        if message.from_user.username.lower() != "judemont": # Yeah it's me !! 😎
+        if message.from_user.username.lower() != "judemont": 
             bot.reply_to(message, "You are not an admin.")
             return
         websites = get_websites_db()
